@@ -12,5 +12,6 @@ Route::group(['prefix' => 'stripe'], function () {
     // API/V1/STRIPE/HOOK
     require_once 'hook.php';
 
-    Route::post('payment/intent', [\App\Http\Controllers\Api\Stripe\Payment\IntentController::class, 'create']);
+    Route::post('payment/intent', [\App\Http\Controllers\Api\Stripe\Payment\IntentController::class, 'create'])
+        ->middleware(['web']);
 });

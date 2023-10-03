@@ -40,12 +40,6 @@ class WebhookRequest extends FormRequest
         $sigHeader = $this->header('stripe-signature', '');
         $webhookSecrete = $this->getSecrete($webhookSecrete);
 
-        Log::debug('test-webhook', [
-            'payload' => $payload,
-            'sigHeader' => $sigHeader,
-            'webhookSecrete' => $webhookSecrete,
-        ]);
-
         return Webhook::constructEvent($payload, $sigHeader, $webhookSecrete);
     }
 

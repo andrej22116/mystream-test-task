@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Exceptions\Stripe\SecreteKeyNotExists;
+use App\Services\Stripe\PaymentService;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Stripe\StripeClient;
@@ -24,12 +25,8 @@ class StripeServiceProvider extends ServiceProvider
                 'api_key' => $apiKey,
             ]);
         });
-        /*$this->app
-            ->when([
 
-            ])
-            ->needs(PaymentInterface::class)
-            ->give();*/
+        $this->app->bind(PaymentService::class);
     }
 
     /**

@@ -34,16 +34,6 @@ class ProductListScreen extends Screen
     }
 
     /**
-     * The name of the screen displayed in the header.
-     *
-     * @return string|null
-     */
-    public function name(): ?string
-    {
-        return 'ProductListScreen';
-    }
-
-    /**
      * The screen's action buttons.
      *
      * @return Action[]

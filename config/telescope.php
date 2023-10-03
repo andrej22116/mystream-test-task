@@ -152,7 +152,7 @@ return [
 
         Watchers\LogWatcher::class => [
             'enabled' => env('TELESCOPE_LOG_WATCHER', true),
-            'level' => 'debug',
+            'level' => 'all',
         ],
 
         Watchers\MailWatcher::class => env('TELESCOPE_MAIL_WATCHER', false),
@@ -166,7 +166,7 @@ return [
         Watchers\NotificationWatcher::class => env('TELESCOPE_NOTIFICATION_WATCHER', true),
 
         Watchers\QueryWatcher::class => [
-            'enabled' => env('TELESCOPE_QUERY_WATCHER', false),
+            'enabled' => env('TELESCOPE_QUERY_WATCHER', true),
             'ignore_packages' => true,
             'ignore_paths' => [],
             'slow' => 100,

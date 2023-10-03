@@ -43,6 +43,8 @@
 
             <div class="col-sm m-4">
                 <form id="payment-form">
+                    @csrf
+
                     <div id="link-authentication-element"></div>
 
                     <div id="link-element"></div>

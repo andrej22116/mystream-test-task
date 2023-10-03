@@ -24,7 +24,6 @@ export default class Payment {
             .addEventListener('submit', this.handleSubmit);
 
         this.cardCompleted = false;
-        this.linkCompleted = false;
         this.setSubmitState(false);
     }
 
@@ -55,8 +54,13 @@ export default class Payment {
      */
     async createPaymentIntent() {
         const { client_secret } = await fetch('/api/v1/stripe/payment/intent', {
+            credentials: 'include',
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': document.querySelector('input[name=_token]').value,
+            },
             body: JSON.stringify({ itemId: this.itemId }),
         }).then((r) => r.json());
 
@@ -77,17 +81,10 @@ export default class Payment {
             this.cardCompleted = event.complete;
             this.setSubmitStateByFieldState();
         })
-
-        const linkElement = this.elements.create('linkAuthentication');
-        linkElement.mount('#link-element');
-        linkElement.on('change', event => {
-            this.linkCompleted = event.complete;
-            this.setSubmitStateByFieldState();
-        })
     }
 
     setSubmitStateByFieldState() {
-        this.setSubmitState(this.cardCompleted && this.linkCompleted)
+        this.setSubmitState(this.cardCompleted)
     }
 
     /**

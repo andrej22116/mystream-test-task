@@ -80,3 +80,15 @@ Route::screen('products', \App\Orchid\Screens\Product\ProductListScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push(__('Products'), route('platform.products')));
+
+Route::screen('payments', \App\Orchid\Screens\Payment\PaymentListScreen::class)
+    ->name('platform.payments')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Payments'), route('platform.payments')));
+
+Route::screen('subscriptions', \App\Orchid\Screens\Payment\SubscribeListScreen::class)
+    ->name('platform.subscriptions')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Subscriptions'), route('platform.subscriptions')));

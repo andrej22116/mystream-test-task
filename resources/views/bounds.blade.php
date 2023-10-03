@@ -12,7 +12,29 @@
 <body class="antialiased">
     <div class="container">
         <header>
+            <div class="container d-flex justify-content-center">
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    <div class="row">
+                        <div class="col m-2">
+                            Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                        </div>
 
+                        <div class="col m-2">
+                            <a class="btn btn-danger" href="{{ route('http.logout') }}">Logout</a>
+                        </div>
+                    </div>
+                @else
+                    <div class="row">
+                        <div class="col m-2">
+                            <a class="btn btn-success" href="{{ route('http.auth.page') }}">SignIn</a>
+                        </div>
+
+                        <div class="col m-2">
+                            <a class="btn btn-primary" href="{{ route('http.reg.page') }}">SignUp</a>
+                        </div>
+                    </div>
+                @endif
+            </div>
         </header>
 
         @yield('content')
